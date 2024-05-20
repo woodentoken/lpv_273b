@@ -12,7 +12,6 @@ tail_length_in = 10.20;
 tail_width_in = 2; % initial, furled tail width
 
 half_wingspan_in = 23;
-height_tail = 0; % assumed
 wingspan_in = 50;
 inboard_span_in = 7;
 outboard_span_in = 15.25;
@@ -71,7 +70,7 @@ tail_area = tail_length * tail_width;
 
 
 % lengths
-l_tail = wing_le_to_tail_le + 0.25*tail_length; % tail moment arm (le of wing to ac of tail)
+l_tail = wing_le_to_tail_le; % tail moment arm
 l_fuselage = l_nose + chord;
 body_fineness_ratio = l_fuselage/body_width;
 
@@ -80,19 +79,17 @@ b_tail = tail_width;
 b_wing = half_wingspan * 2 + body_width;
 b_exposed_wing = half_wingspan * 2;
 
-% chord
+% area S
+S_exposed_wing = wing_area;
+S_body_max = pi*body_width*body_depth;
+S_tail = 1;
+
 mean_chord_inboard = chord;
+
 taper_ratio_outboard = (1*inches2meters)/chord; 
 mean_chord_outboard = chord*(2/3)*(1 + taper_ratio_outboard + taper_ratio_outboard^2) / (1 + taper_ratio_outboard);
 mean_chord_exposed_wing = (mean_chord_inboard*inboard_span + mean_chord_outboard*outboard_span)/(inboard_span + outboard_span);
 mean_chord_wing = (mean_chord_inboard*(inboard_span+body_width/2) + mean_chord_outboard*outboard_span)/(inboard_span + (body_width/2) + outboard_span);
-
-% area S
-S_exposed_wing = wing_area;
-S_body_max = pi*body_width*body_depth;
-spread_angle = 60;
-S_tail = pi*tail_length^2*(spread_angle/360); % segment of a circle
-S = wingspan*mean_chord_wing;
 
 % aspect ratio AR
 AR_exposed = b_exposed_wing/mean_chord_exposed_wing;
@@ -107,12 +104,10 @@ x_ac = 0.4*chord;
 static_margin = x_cg - x_ac;
 eta = static_margin/chord;
 
-eta_tail = 0.8;
-
 body_diameter_to_wingspan = body_width / (2*half_wingspan);
 
 % wing body empirical approximations for subsonic flight
-apparent_mass_constant = 4; % empirical function of body_fineness_ratio
+apparent_mass_constant = 
 K_WB = 0.1714*(body_diameter_to_wingspan)^2 + 0.8326*(body_diameter_to_wingspan) + 0.9974; % function of body diameter to wingspan;
 K_BW = 0.7810*(body_diameter_to_wingspan)^2 + 1.1976*(body_diameter_to_wingspan) + 0.0088; % function of body diameter to wingspan;
-K_N = 2*apparent_mass_constant*S_body_max/S; % nose lift constant
+K_N = 2*apparent_mass_constant*S_body_max/S
