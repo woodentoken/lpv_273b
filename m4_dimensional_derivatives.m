@@ -1,4 +1,11 @@
-ndderivatives;
+% 1 model_geometry.m
+% 2 derived-quantities.m
+% 3 Nelson_nd_derivatives.m
+% 4 **dimensional_derivatives.m**
+% 5 longitudinal_eom.m
+
+m3_Nelson_nd_derivatives
+
 rho = 1.225; % air density
 Q = 0.5 * rho * u_0^2; % dynamic pressure
 

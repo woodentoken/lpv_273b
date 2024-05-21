@@ -1,4 +1,11 @@
+% 1 model_geometry.m
+% 2 derived-quantities.m
+% 3 Nelson_nd_derivatives.m
+% 4 dimensional_derivatives.m
+% 5 **longitudinal_eom.m**
 
+% call the dimensional derivatives script
+m4_dimensional_derivatives
  
 % longitudinal dynamical system
 % E xdot = A x + B u
