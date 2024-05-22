@@ -101,9 +101,9 @@ CL_del_e = (S_tail/S_exposed_wing) * eta_tail * CL_alpha_tail * tau_e;
 CZ_del_e = - CL_del_e; % Nelson 65
 Cm_del_e = CZ_del_e * (l_tail/c_bar); % Nelson 65
 
-CX_del_T = 0.1;
-CZ_del_T = 0;
-Cm_del_T = 0;
+CX_del_T = 0.01;
+CZ_del_T = 0.001;
+Cm_del_T = 0.001;
 
 %% WHOLE AIRCRAFT
 del_e_trim = 0;

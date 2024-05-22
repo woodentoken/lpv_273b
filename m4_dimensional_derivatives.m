@@ -7,6 +7,7 @@
 % run the "baseline" case
 m3_Nelson_nd_derivatives
 
+% clearvars; Nelson_example; % uncomment this to test this case
 % This is a verification case, it is based on an example given in Nelson
 % (1998) Flight Stability and Control. This verifies that the matrices and
 % coefficients are being calculated correctly, the correct values from
@@ -17,7 +18,14 @@ m3_Nelson_nd_derivatives
 %  0.0019 -0.0396    -2.948   0
 %  0.0019 -0.0396    -2.948   0   
 %  0.0000  0.0000     1.0000  0
-% Nelson_example; % uncomment this to test this case
+
+% which produces these eigenvalues (eig(A)):
+  % -2.5103 + 2.8668i
+  % -2.5103 - 2.8668i
+  % -0.0173 + 0.2183i
+  % -0.0173 - 0.2183i
+
+
 
 %% Dimensional Coefficients
 % all of these are taken from 

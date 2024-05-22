@@ -11,7 +11,7 @@ inches2meters = 0.0254;
 
 %% weight and balance
 mass = 1; % kg
-Iyy = 0.01042; % kg m^2
+Iyy = 0.1042; % kg m^2
 Ixx = 0;
 Izz = 0;
 
