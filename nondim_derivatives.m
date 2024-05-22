@@ -45,6 +45,10 @@ CD = CD_0 + CD_alpha*ac.alpha_trim;
 Cm_0            = Cm_0_wing + Cm_0_tail;
 Cm_alpha        = Cm_alpha_wing + Cm_alpha_fuselage + Cm_alpha_tail;
 
+if (Cm_0 < 0)
+    sprintf('NOTE: the 0 alpha moment coefficient is negative, therefore, the aircraft will not be able to trim at a positive angle of attack')
+end
+
 %% STABILITY DERIVATIVES
 % nondimensional longitudinal stability derivatives (see Nelson page 116)
 % u derivatives
@@ -109,9 +113,9 @@ CD_ac = CD_0 + CD_alpha*ac.alpha_trim + CD_del_e*abs(del_e_trim); % assume drag 
 ac.trim.moment = ac.Q*ac.geom.S*Cm_ac; % must be 0 (N*m)
 ac.trim.lift = ac.Q*ac.geom.S*CL_ac; % must be countered by weight (N)
 ac.trim.drag = ac.Q*ac.geom.S*CD_ac; % must be countered by thrust (N)
-ac.trim.elevator = del_e_trim_deg;
+ac.trim.elevator_deg = del_e_trim/deg2rad;
 ac.trim.airspeed = ac.u_0;
-ac.trim.alpha = ac.alpha_trim;
+ac.trim.alpha_deg = ac.alpha_trim/deg2rad;
 
 %% DERIVED PARAMETERS
 ac.x_np = ac.x_ac + ac.eta*ac.geom.V_tail*(CL_alpha_tail/CL_alpha_wing)*(1-dedalpha);

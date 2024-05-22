@@ -36,7 +36,7 @@ ac.x_ac             = 0.25; % aircraft aerodynamic center location as a percenta
 ac.alpha_trim       = 2*deg2rad; % desired trim AOA (you can change this to get different dynamics)
 
 ac.i_wing           = 0*deg2rad; % wing incidence angle
-ac.i_tail           = 0*deg2rad; % tail incidence angle
+ac.i_tail           = -5*deg2rad; % tail incidence angle
 
 ac.wing_airfoil     = 'Selig4083'; 
 ac.Cl_alpha_airfoil = 5.95;
@@ -55,10 +55,10 @@ ac.tau_e            = 0.8; % elevator effectiveness factor
 % run:
 %
 % - for instance, try doubling the Iyy and seeing the influence on stability!
-% ac.Iyy = ac.Iyy*2; % will ovewrite the prescribed values to ellicit different
+% ac.Iyy = ac.Iyy; % will ovewrite the prescribed values to ellicit different
 %
 % - or increasing or decreasing the baseline tail length:
-% ac.geom.l_tail = 3*ac.geom.l_tail;
+% ac.geom.l_tail = 1/3*ac.geom.l_tail;
 %
 % dynamics;
 
