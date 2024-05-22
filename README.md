@@ -40,4 +40,4 @@ before the `nondimensional derivatives`, `dimensional derivatives` and `longitud
 This work is validated against an example provided in Nelson (1998). In that example, the nondimensional derivatives are provided along with a flight condition, and the longitudinal dynamics are recreated to be:
 ![image](https://github.com/woodentoken/lpv_273b/assets/43391485/21dca3ed-d019-444e-9523-770083a6c364)
 
-This example is included in `Nelson_example.m` which can be run to produce a matching A matrix, confirming, at least, that the calculation of the dimensional derivatives from the nondimensional derivatives is valid.
+This example is included in `Nelson_example.m` which can be run to produce a matching A matrix, confirming, at least, that the calculation of the dimensional derivatives from the nondimensional derivatives is valid. There may be some discrepancy due to Nelson's use of rounding, but the overall result is basically exact. Individual matching with the dimensional coefficients can be performed for additional verification.
