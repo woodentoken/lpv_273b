@@ -21,6 +21,7 @@ before the `nondimensional derivatives`, `dimensional derivatives` and `longitud
 
 # Assumptions
 - SI units are the baseline system of measurement.
+- a vertical tail is not modeled and as such its drag contribution is ignored entirely
 - the wing being modeled here is slightly tapered, this reduces its baseline area and slightly increases its span efficiency factor, as it is closer to an elliptical lift distribution
 - as of now, fuselage effects are not being modeled
 - changes to geometric properties are not reflected in changes to the moments of inertia. These must be updated separately.
