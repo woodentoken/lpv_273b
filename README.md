@@ -1,6 +1,6 @@
 # lpv_273b
 
-This models the longitudinal dynamics of an avian inspired aircraft using approximations from Flight Stability and Control - Nelson (1998), PErformance, Stability, Dynamics and Control of Airplance - Pamadi (1998), and a few references to Smetana (1994). 
+This models the longitudinal dynamics of an avian inspired aircraft using approximations from [Flight Stability and Control - Nelson (1998)](https://home.engineering.iastate.edu/~shermanp/AERE355/lectures/Flight_Stability_and_Automatic_Control_N.pdf), Performance, Stability, Dynamics and Control of Airplance - Pamadi (1998), and a few references to Smetana (1994). 
 
 # Baseline
 this work assumes the wing airfoil is a [Selig4083](http://airfoiltools.com/airfoil/details?airfoil=s4083-il) and the tail airfoil is a [NACA0006](http://airfoiltools.com/airfoil/details?airfoil=naca0006-il).
