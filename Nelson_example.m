@@ -1,22 +1,24 @@
 clearvars;
+clear ac;
+ac = struct();
 
-u_0 = 176;
+ac.u_0 = 176;
 rho = 0.002378;
 
 g = 32.2;
 
-Q = 0.5*rho*u_0^2;
-S = 184;
-c_bar = 5.7;
+ac.Q = 0.5*rho*ac.u_0^2;
+ac.geom.S = 184;
+ac.geom.c_bar = 5.7;
 
-W = 2750;
-m = 2750/32.2;
+ac.W = 2750;
+ac.mass = 2750/32.2;
 
-Ixx = 1048;
-Iyy = 3000;
-Izz = 3530;
+ac.Ixx = 1048;
+ac.Iyy = 3000;
+ac.Izz = 3530;
 
-x_cg_ac = 0.295; % percent chord
+ac.x_cg = 0.295; % percent chord
 
 CD_u = 0;
 CD_0 = 0.05;
