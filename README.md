@@ -1,1 +1,28 @@
 # lpv_273b
+
+This models the longitudinal dynamics of an avian inspired aircraft using approximations from Flight Stability and Control - Nelson (1998), PErformance, Stability, Dynamics and Control of Airplance - Pamadi (1998), and a few references to Smetana (1994). 
+
+# Baseline
+this work assumes the wing airfoil is a [Selig4083](http://airfoiltools.com/airfoil/details?airfoil=s4083-il) and the tail airfoil is a [NACA0006](http://airfoiltools.com/airfoil/details?airfoil=naca0006-il).
+
+# Overview
+The most important file is the `main.m` file, which unifies the other files and allows for tweaking of the underling model parameters and geometries. The general flow of the program is:
+- use a defined geometry to fill the `ac.geom` substructure
+- use prescribed aerodynamic properties, such as lift vs alpha slopes for chosen airfoils, as well as efficiency factor estimates to fill the aerodynamics of the `ac` struct
+- with the `ac` aerodynamic information, and the `ac.geom` information, estimate the nondimensional stability and control derivatives via techniques found in the referenced textbooks above
+- using the nodimensional derivatives, locate a flight condition in which M = 0, L = W, and D = T (trim condition).
+  - this condition is saved in `ac.trim` sub structure  
+- with the nondimensional derivatives and the trim condition, calculate the dimensional derivatives
+- with the dimensional derivatives, fill in a state space model of the longitudinal motion of the aircraft
+  - with small angle assumptions applied, etc.
+
+# Usage
+before the `nondimensional derivatives`, `dimensional derivatives` and `longitudinal_eom` scripts are run, any of the aircraft parameters can be tweaked manually to result in different dynamics, this tweaking should be done either directly in the `main.m` script, or in auxiliary scripts that can be called in `main.m` to change the aircraft dynamics
+
+# Assumptions
+- SI units are the baseline system of measurement.
+- the wing being modeled here is slightly tapered, this reduces its baseline area and slightly increases its span efficiency factor, as it is closer to an elliptical lift distribution
+- as of now, fuselage effects are not being modeled
+- changes to geometric properties are not reflected in changes to the moments of inertia. These must be updated separately.
+  - Similarly, the center of gravity is not respondent to changes in geometry or mass. This change should be estimated as best as possible.  
+- the predictions being made here are very rough, real analysis should be done with CFD or flight testing to create physically relevant information.
