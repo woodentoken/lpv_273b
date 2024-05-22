@@ -2,22 +2,28 @@ clc; clearvars;
 %% main.m
 % this is the unifying script that runs all other scripts to produce a
 % longitudinal EOM system
-% - GEOMETRYL: a "bare" aircraft with geometric information
+% - GEOMETRY: a "bare" aircraft with geometric information
+%
 % - AERODYNAMICS: aerodynamics parameters (airfoil lift curve, etc, is added to the
 % aircraft
+%
 % - NONDIMENSIONAL_DERIVATIVES = GEOMETRY + AERODYNAMICS: with these sets
 % of information the aircraft nondimensional derivatives can be calculated,
 % as well as a trim condition.
+%
 % - TRIM_CONDITION = NONDIMENSIONaL_DERIVATIVES + DESIRED AOA;
+%
 % - DIMENSIONAL_DERIVATIVES = NONDIMENSIONAL_DERIVATIVES + TRIM_CONDITION:
 % with the trim condition and the nondimensional derivatives, we can
 % calculate dimensional derivatives about this trim condition, which can be
 % used to create a dynamics model at the given condition.
+
+% useful constants:
 rho = 1.225; % air density
 g = 9.81;
 deg2rad = pi/180;
 
-% define an empty airframe;
+% define an empty aircraft struct, which we will add to
 bare_ac = struct;
 
 % fill the airframe with geometric information
@@ -50,10 +56,10 @@ ac.tau_e            = 0.8; % elevator effectiveness factor
 %
 % - for instance, try doubling the Iyy and seeing the influence on stability!
 % ac.Iyy = ac.Iyy*2; % will ovewrite the prescribed values to ellicit different
-
+%
 % - or increasing or decreasing the baseline tail length:
-%ac.geom.l_tail = 3*ac.geom.l_tail;
-
+% ac.geom.l_tail = 3*ac.geom.l_tail;
+%
 % dynamics;
 
 % calculate nondimensional derivatives
