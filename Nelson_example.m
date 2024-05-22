@@ -20,6 +20,7 @@ ac.Izz = 3530;
 
 ac.x_cg = 0.295; % percent chord
 
+% u
 CD_u = 0;
 CD_0 = 0.05;
 CT_u = -CD_0;
@@ -29,16 +30,20 @@ CL_u = 0;
 CL_0 = 0.41;
 Cm_u = 0;
 
+% alpha
 CD_alpha = 0.33;
 CL_alpha = 4.44;
 
+% alpha dot
 CZ_alpha_dot = 0;
 Cm_alpha = -0.683;
 Cm_alpha_dot = -4.36;
 
+% q
 CZ_q = 0;
 Cm_q = -9.96;
 
+% control surfaces not covered
 CX_del_e = 0;
 CZ_del_e = 0;
 
@@ -47,6 +52,10 @@ CZ_del_T = 0;
 
 Cm_del_e = 0;
 Cm_del_T = 0;
+
+% run the following scripts with these example derivatives:
+dimensional_derivatives
+longitudinal_eom
 
 
 

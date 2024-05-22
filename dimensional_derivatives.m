@@ -6,9 +6,9 @@
 
 % clearvars; Nelson_example; % ****uncomment this to test the Nelson case****
 % This is a verification case, it is based on an example given in Nelson
-% (1998) Flight Stability and Control. This verifies that the matrices and
-% coefficients are being calculated correctly, the correct values from
-% Nelson are:
+% (1998) Flight Stability and Control, page 158.
+% This verifies that the matrices and coefficients are being calculated 
+% correctly, the correct values from Nelson are:
 % A = 
 % -0.045  0.036       0.0000 -32.2
 % -0.369  -2.02       176     0
