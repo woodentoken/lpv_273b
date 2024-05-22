@@ -6,30 +6,33 @@
 
 % call the dimensional derivatives script
 m4_dimensional_derivatives
+m = mass;
+g = 9.81;
  
 % longitudinal dynamical system
 % E xdot = A x + B u
 % acceleration coefficient matrix (inertial matrix)
 
 % state vector = [forward speed, vertical speed, pitch rate, pitch angle];
-A = [
-    [Xu   Xw    Xq   -g];
-    [Zu   Zw    u_0   0  ];
-    [Mu+Mw_dot*Zu   Mw+Mw_dot*Zu    Mq+Mw_dot*u_0    0  ];
+A_hat = [
+    [Xu   Xw    Xq   -*g];
+    [Zu   Zw    1     0  ];
+    [Mu   Ma    Mq    0  ];
     [0    0     1     0  ];
 ]; % 4 x 4
 
 % control vector = [elevator deflection, thrust command];
-B = [
-    [Xdel_e                 Xdel_T];
-    [Zdel_e                 Zdel_T];
-    [Mdel_e+Mw_dot*Zdel_e   Mdel_T+Mw_dot*Zdel_T];
-    [0                      0     ];
+B_hat = [
+    [Xdel_e   Xdel_T];
+    [Zdel_e   Zdel_T];
+    [Mdel_e   Mdel_T];
+    [0        0     ];
 ]; % 4 x 2
 
-
+A = A_hat\E;
+B = B_hat\E;
 C=eye(4); % assume perfect state knowledge
-D=0*eye(4,2);
+D=0*eye(4);
 
 % 4DOF longitudinal system
 longitudinal_system = ss(A, B, C, D);

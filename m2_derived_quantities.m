@@ -22,11 +22,6 @@ half_wing_area = outboard_wing_area + inboard_wing_area;
 wing_area = 2 * half_wing_area;
 
 %% Final, aircraft quantities: %%
-% lengths
-l_tail = 3*wing_le_to_tail_le + 0.25*tail_length; % tail moment arm (le of wing to ac of tail)
-l_fuselage = l_nose + chord;
-body_fineness_ratio = l_fuselage/body_width;
-
 %% wing
 % span b
 b_wing = half_wingspan * 2 + body_width;
@@ -71,13 +66,7 @@ AR_tail_furled = b_tail_furled / tail_length;
 V_tail = (l_tail * S_tail) / (chord * S_exposed_wing); % tail volume coefficient
 
 e = 1/(1.05 + 0.007*pi*AR); % oswald efficiency factor approximation
-
-x_cg = 0.25*chord;
-x_ac = 0.4*chord;
-static_margin = x_cg - x_ac;
-eta = static_margin/chord;
-
-eta_tail = 0.8;
+eta_tail = 0.8; % tail efficiency factor, ratio of dynamic pressures
 
 %% Body
 body_diameter_to_wingspan = body_width / (2*half_wingspan);

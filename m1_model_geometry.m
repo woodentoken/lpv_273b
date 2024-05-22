@@ -1,4 +1,6 @@
 % 1 **model_geometry.m**
+clearvars;
+% **1 model_geometry.m**
 % 2 derived-quantities.m
 % 3 Nelson_nd_derivatives.m
 % 4 dimensional_derivatives.m
@@ -9,7 +11,7 @@ inches2meters = 0.0254;
 
 %% weight and balance
 mass = 1; % kg
-Iyy = 0.001042; % kg m^2
+Iyy = 0.01042; % kg m^2
 Ixx = 0;
 Izz = 0;
 
@@ -34,25 +36,30 @@ le_to_tip_in = 15.5;
 te_to_tip_in = 17;
 
 wing_le_to_tail_le_in = chord_in;
+wing_le_to_tail_le = wing_le_to_tail_le_in * inches2meters;
 
 %% dimensions in meters
+chord = inches2meters * chord_in;
+
+l_nose = nose_length_in * inches2meters;
 tail_length = inches2meters * tail_length_in;
 tail_width = inches2meters * tail_width_in;
+
+body_width = body_width_in * inches2meters;
+body_depth = body_width_in * inches2meters;
+
+% lengths
+l_tail = 3*wing_le_to_tail_le + 0.25*tail_length; % tail moment arm (le of wing to ac of tail)
+l_fuselage = l_nose + chord;
+body_fineness_ratio = l_fuselage/body_width;
 
 half_wingspan = inches2meters * half_wingspan_in;
 wingspan = wingspan_in * inches2meters;
 inboard_span = inboard_span_in * inches2meters;
 outboard_span = outboard_span_in * inches2meters;
 
-body_width = body_width_in * inches2meters;
-body_depth = body_width_in * inches2meters;
-
-l_nose = nose_length_in * inches2meters;
-chord = inches2meters * chord_in;
-
 root_to_wrist = inches2meters * root_to_wrist_in;
 le_to_tip = inches2meters * le_to_tip_in;
 te_to_tip = inches2meters * te_to_tip_in;
 
-wing_le_to_tail_le = wing_le_to_tail_le_in * inches2meters;
 
