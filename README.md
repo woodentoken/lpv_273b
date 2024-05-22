@@ -5,6 +5,14 @@ This models the longitudinal dynamics of an avian inspired aircraft using approx
 # Baseline
 this work assumes the wing airfoil is a [Selig4083](http://airfoiltools.com/airfoil/details?airfoil=s4083-il) and the tail airfoil is a [NACA0006](http://airfoiltools.com/airfoil/details?airfoil=naca0006-il).
 
+# Structure
+- `ac` - this is the baseline struct that houses information about the aircraft. This structure also houses the aerodynamic parameter information such as the lift alpha slope of the chosen airfoils and tail. This `ac` structure is made up of two substructures:
+    - `ac.geom` - this is the geometric information about the aircraft (wing area, tail volume ratio, chord, etc.)
+    - `ac.trim` - this is the trim information which is derived from the nondimensional derivatives and the desired angle of attack
+
+Note that stability derivative information is currently not tracked within the `ac` struct. A future version will add those dimensional and nondimensional coefficients.
+
+
 # Overview
 The most important file is the `main.m` file, which unifies the other files and allows for tweaking of the underling model parameters and geometries. The general flow of the program is:
 - use a defined geometry to fill the `ac.geom` substructure
