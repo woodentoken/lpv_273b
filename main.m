@@ -36,7 +36,7 @@ ac.x_ac             = 0.25; % aircraft aerodynamic center location as a percenta
 ac.alpha_trim       = 2*deg2rad; % desired trim AOA (you can change this to get different dynamics)
 
 ac.i_wing           = 0*deg2rad; % wing incidence angle
-ac.i_tail           = -5*deg2rad; % tail incidence angle
+ac.i_tail           = 0*deg2rad; % tail incidence angle
 
 ac.wing_airfoil     = 'Selig4083'; 
 ac.Cl_alpha_airfoil = 5.95;
