@@ -28,7 +28,7 @@
 % all of these are taken from 
 % dimensional longitudinal stability derivatives (see Nelson page 150)
 Xu         = -(CD_u + 2*CD_0) * (1/ac.u_0)*ac.Q*ac.geom.S/ac.mass;
-Xw         = -1*(CD_alpha - CL_0) * ac.Q*ac.geom.S/(ac.mass*ac.u_0);
+Xw         = -1*(CD_ac - CL_0) * ac.Q*ac.geom.S/(ac.mass*ac.u_0);
 Xq         = 0;
 
 Zu         = -1*(CL_u + 2*CL_0) * ac.Q*ac.geom.S/(ac.mass*ac.u_0);
@@ -46,8 +46,8 @@ Ma_dot     = ac.u_0 * Cm_alpha_dot;
 Mq         = Cm_q * (ac.geom.c_bar/(2*ac.u_0)) * (ac.Q*ac.geom.S*ac.geom.c_bar/ac.Iyy);
 
 % longitudinal control derivatives
-Xdel_e     = CX_del_e * (ac.Q*ac.geom.S*ac.geom.c_bar)/ac.Iyy;
-Xdel_T     = CX_del_T * (ac.Q*ac.geom.S*ac.geom.c_bar)/ac.Iyy;
+Xdel_e     = CX_del_e * (ac.Q*ac.geom.S)/ac.mass;
+Xdel_T     = CX_del_T * (ac.Q*ac.geom.S)/ac.mass;
 
 Zdel_e     = - CZ_del_e * (ac.Q*ac.geom.S)/ac.mass;
 Zdel_T     = - CZ_del_T * (ac.Q*ac.geom.S)/ac.mass;

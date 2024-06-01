@@ -24,6 +24,11 @@ D=0*eye(4,2);
 longitudinal_system = ss(A, B, C, D);
 rank(ctrb(A,B));
 
+states = {'u', 'w', 'pitch rate', 'pitch angle'};
+inputs = {'elev', 'thrust'};
+outputs = states;
+
+sys_mimo = ss(A,B,C,D, 'statename', states, 'inputname', inputs, 'outputname', outputs);
+
 % transfer function matrices
-elevator_tfm = ss2tfm(A,B,C,D,1);
-thrust_tfm = ss2tfm(A,B,C,D,2);
+tf_sys_mimo = tf(sys_mimo);

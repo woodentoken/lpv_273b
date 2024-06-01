@@ -76,8 +76,8 @@ dimensional_derivatives;
 longitudinal_eom;
 
 %% inspect values:
-longitudinal_system
-eigenvalues_A = eig(A) % baseline stability
-singular_values_A = svd(A)
+sys_mimo
+eigenvalues_A = eig(A); % baseline stability
+singular_values_A = svd(A);
 
 orderfields(ac);

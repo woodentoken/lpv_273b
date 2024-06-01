@@ -80,7 +80,7 @@ CZ_alpha_dot = -CL_alpha_dot; % Nelson 114, scaled by 1.1 for whole aircraft
 Cm_alpha_dot = CZ_alpha_dot * (ac.geom.l_tail/ac.geom.c_bar); % Nelson 115
 
 %% CONTROL DERIVATIVES
-CX_del_e = - ((0.155 - .047)/(20*pi/180)) * (ac.geom.S_tail/ac.geom.S); % Smac.etana approximation by way of Watkiss thesis
+CX_del_e = - ((0.155 - .047)/(20*pi/180)) * (ac.geom.S_tail/ac.geom.S); % Smetana approximation by way of Watkiss thesis
 CD_del_e = - CX_del_e; % Smac.etana approximation by way of Watkiss thesis
 CL_del_e = (ac.geom.S_tail/ac.geom.S) * ac.eta * CL_alpha_tail * ac.tau_e;
 CZ_del_e = - CL_del_e; % Nelson 65
