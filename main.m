@@ -33,7 +33,9 @@ ac = fill_model_geometry(bare_ac);
 ac.x_cg             = 0.3; % aircraft center of gravity location as a percentage of chord length
 ac.x_ac             = 0.25; % aircraft aerodynamic center location as a percentage of chord length
 
-ac.alpha_trim       = 2*deg2rad; % desired trim AOA (you can change this to get different dynamics)
+%%%%% CHANGE THIS FOR DIFFERENT TRIM CONDITIONS %%%%
+ac.alpha_trim       = 5*deg2rad; % desired trim AOA (you can change this to get different dynamics)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 ac.i_wing           = 0*deg2rad; % wing incidence angle
 ac.i_tail           = -5*deg2rad; % tail incidence angle

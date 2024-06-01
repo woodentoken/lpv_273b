@@ -85,7 +85,7 @@ b_exposed_wing = half_wingspan * 2;
 % chord
 mean_chord_inboard = chord;
 
-taper_ratio_outboard = (1*inches2meters)/chord; 
+taper_ratio_outboard = (1*inches2meters)/chord;
 mean_chord_outboard = chord*(2/3)*(1 + taper_ratio_outboard + taper_ratio_outboard^2) / (1 + taper_ratio_outboard); % semiperimeter calculations
 
 mean_chord_exposed_wing = (mean_chord_inboard*inboard_span + mean_chord_outboard*outboard_span)/(inboard_span + outboard_span);
@@ -110,8 +110,9 @@ c_tail = tail_length;
 
 % area S
 spread_angle = 60;
-S_tail = pi*tail_length^2*(spread_angle/360); % segment of a circle
+S_tail_spread = pi*tail_length^2*(spread_angle/360); % segment of a circle
 S_tail_furled = 1.1*tail_length * tail_width;
+S_tail = S_tail_spread;
 
 % aspect ratio AR
 AR_tail = b_tail_spread / tail_length;
@@ -144,6 +145,8 @@ ac.geom.c_bar = mean_chord_exposed_wing;
 ac.geom.AR = AR_exposed;
 
 ac.geom.S_tail = S_tail;
+ac.geom.S_tail_furled = S_tail_furled;
+ac.geom.S_tail_spread = S_tail_spread;
 ac.geom.b_tail_spread = b_tail_spread;
 ac.geom.b_tail_furled = b_tail_furled;
 ac.geom.AR_tail = AR_tail;
