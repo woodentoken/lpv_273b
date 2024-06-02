@@ -49,8 +49,8 @@ Mq         = Cm_q * (ac.geom.c_bar/(2*ac.u_0)) * (ac.Q*ac.geom.S*ac.geom.c_bar/a
 Xdel_e     = CX_del_e * (ac.Q*ac.geom.S)/ac.mass;
 Xdel_T     = CX_del_T * (ac.Q*ac.geom.S)/ac.mass;
 
-Zdel_e     = - CZ_del_e * (ac.Q*ac.geom.S)/ac.mass;
-Zdel_T     = - CZ_del_T * (ac.Q*ac.geom.S)/ac.mass;
+Zdel_e     = CZ_del_e * (ac.Q*ac.geom.S)/ac.mass;
+Zdel_T     = CZ_del_T * (ac.Q*ac.geom.S)/ac.mass;
 
 Mdel_e     = Cm_del_e * (ac.Q*ac.geom.S*ac.geom.c_bar)/ac.Iyy;
 Mdel_T     = Cm_del_T * (ac.Q*ac.geom.S*ac.geom.c_bar)/ac.Iyy;

@@ -34,7 +34,9 @@ ac.x_cg             = 0.3; % aircraft center of gravity location as a percentage
 ac.x_ac             = 0.25; % aircraft aerodynamic center location as a percentage of chord length
 
 %%%%% CHANGE THIS FOR DIFFERENT TRIM CONDITIONS %%%%
-ac.alpha_trim       = 5*deg2rad; % desired trim AOA (you can change this to get different dynamics)
+ac.alpha_trim_deg   = 0;
+ac.alpha_trim       = ac.alpha_trim_deg*deg2rad; % desired trim AOA (you can change this to get different dynamics)
+alpha_condition = string(ac.alpha_trim_deg);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 ac.i_wing           = 0*deg2rad; % wing incidence angle
@@ -74,10 +76,6 @@ dimensional_derivatives;
 
 % calculate longitudinal EOM models
 longitudinal_eom;
-
-%% inspect values:
-sys_mimo
-eigenvalues_A = eig(A); % baseline stability
-singular_values_A = svd(A);
-
-orderfields(ac);
+ac.mimo_system = sys_mimo;
+ac = orderfields(ac);
+save('saved_trim_states/' + alpha_condition + '_alpha_trim')

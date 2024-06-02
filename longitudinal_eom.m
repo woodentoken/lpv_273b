@@ -14,7 +14,7 @@ A = [
 B = [
     [Xdel_e                 Xdel_T];
     [Zdel_e                 Zdel_T];
-    [Mdel_e+Mw_dot*Zdel_e   Mdel_T+Mw_dot*Zdel_T];
+    [Mdel_e+Mw_dot*Zdel_e   Mdel_T+Mw_dot*Zdel_e];
     [0                      0     ];
 ]; % 4 x 2
 C=eye(4); % assume perfect state knowledge
@@ -24,8 +24,8 @@ D=0*eye(4,2);
 longitudinal_system = ss(A, B, C, D);
 rank(ctrb(A,B));
 
-states = {'u', 'w', 'pitch rate', 'pitch angle'};
-inputs = {'elev', 'thrust'};
+states = {'delta u', 'delta w', 'pitch rate', 'delta pitch angle'};
+inputs = {'delta elevator', 'delta thrust'};
 outputs = states;
 
 sys_mimo = ss(A,B,C,D, 'statename', states, 'inputname', inputs, 'outputname', outputs);

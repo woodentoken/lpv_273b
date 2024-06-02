@@ -89,7 +89,7 @@ Cm_del_e = CZ_del_e * (ac.geom.l_tail/ac.geom.c_bar); % Nelson 65
 % these are all assumed/prescribed - the thrust "input" is arbitrary anyway
 CX_del_T = 0.5;
 CZ_del_T = -0.05;
-Cm_del_T = 0.01;
+Cm_del_T = 0.1;
 
 %% Trim determination
 

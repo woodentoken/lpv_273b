@@ -31,7 +31,7 @@ CL_0 = 0.41;
 Cm_u = 0;
 
 % alpha
-CD_alpha = 0.33;
+CD_ac = 0.33;
 CL_alpha = 4.44;
 
 % alpha dot
