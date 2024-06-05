@@ -76,6 +76,6 @@ dimensional_derivatives;
 
 % calculate longitudinal EOM models
 longitudinal_eom;
-ac.mimo_system = sys_mimo;
+ac.mimo_system = sys_mimo_2x2;
 ac = orderfields(ac);
 save('saved_trim_states/' + alpha_condition + '_alpha_trim')

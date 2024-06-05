@@ -5,6 +5,7 @@
 close all; clc;
 
 alpha_condition = string(ac.alpha_trim*180/pi);
+system = sys_mimo_2x2;
 
 %% Impulse response
 % configure the per channel impulse amounts (we don't want a 1 radian
@@ -15,7 +16,7 @@ impulse_config.Amplitude = [-5*pi/180, 0.2]; % 5 degrees elevator, "50% thrust i
 impulse_config.Delay = 0;
 
 f1 = figure(1);
-impulse(sys_mimo, impulse_config);
+impulse(system, impulse_config);
 grid on
 saveas(f1, 'plots/impulse_response_alpha=' + alpha_condition +'.png')
 
@@ -24,19 +25,19 @@ step_config = RespConfig;
 step_config.Amplitude = [1*pi/180, .1];
 
 f2 = figure(2);
-step(sys_mimo, step_config)
+step(system, step_config)
 grid on
 saveas(f2, 'plots/step_response_alpha=' + alpha_condition +'.png')
 
 %% elevator only step response with aoa
 f3 = figure(3);
-elevator_deflection = 1; % degree(s) of elevator from trim state
+elevator_deflection = 3; % degree(s) of elevator from trim state
 t_sim = 100;
 
 t = linspace(0,t_sim,10000);
 u = [(elevator_deflection*pi/180)*ones(length(t),1), zeros(length(t),1)];
 
-[y, t] = lsim(sys_mimo, u, t);
+[y, t] = lsim(system, u, t);
 
 % add original trim airspeed for simplicity in interpretation
 forward_speed = y(:,1)+ac.trim.airspeed;
@@ -80,7 +81,7 @@ thrust_amount = 0.1; % percentage of thrust increase from trim
 t = linspace(0,t_sim,1000);
 u = [zeros(length(t),1), thrust_amount*ones(length(t),1)];
 
-[y, t] = lsim(sys_mimo, u, t);
+[y, t] = lsim(system, u, t);
 
 % add original trim airspeed for simplicity in interpretation
 forward_speed = y(:,1)+ac.trim.airspeed;
