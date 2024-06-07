@@ -69,7 +69,7 @@ ac.tau_e            = 0.8; % elevator effectiveness factor
 % dynamics;
 
 % calculate nondimensional derivatives
-nondim_derivatives
+nondim_derivatives;
 
 % calculate dimensional derivatives
 dimensional_derivatives;
@@ -77,5 +77,7 @@ dimensional_derivatives;
 % calculate longitudinal EOM models
 longitudinal_eom;
 ac.mimo_system = sys_mimo_2x2;
+ac.mimo_system_4x2 = sys_mimo_4x2;
+ac.tfm = tf(ac.mimo_system);
 ac = orderfields(ac);
 save('saved_trim_states/' + alpha_condition + '_alpha_trim')
