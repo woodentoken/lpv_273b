@@ -1,0 +1,76 @@
+function [] = hinfplotting(ltf)
+%UNTITLED Summary of this function goes here
+%   Detailed explanation goes here
+w_range = 10^-3:0.001:10^3;
+
+% %% plotting
+figure(1)
+subplot(3,1,1)
+sigma( ...
+    ltf.Ly, 'm', ...
+    ltf.Gp, '', ...
+    ltf.Gc,'' ...
+    )
+legend('Ly', 'Gp', 'Gc','Location', 'best')
+grid
+set(gca, 'Color','k', 'XColor','w', 'YColor','w');set(gcf, 'Color','k')
+
+subplot(3,1,2)
+sigma( ...
+    ltf.Ly, 'w', ...
+    ltf.Sy, 'r', ...
+    ltf.Wp, 'r--', ...
+    ltf.Ty, 'c', ...
+    ltf.Wd, 'c--'...
+    )
+legend( 'Ly', 'Sy', 'Wp','Ty', 'Wd', 'Location', 'best')
+grid
+set(gca, 'Color','k', 'XColor','w', 'YColor','w');set(gcf, 'Color','k')
+
+subplot(3,1,3)
+sigma( ...
+    ltf.Y, 'y', ...
+    ltf.Wu, 'g' ...
+    )
+legend('Y', 'Wy', 'Location', 'best')
+grid
+set(gca, 'Color','k', 'XColor','w', 'YColor','w');set(gcf, 'Color','k')
+
+% figure(2)
+% step(ltf.To)
+% title('closed loop step response')
+% grid
+% 
+% figure(3)
+% step(Y)
+% title('actuator activity under step response')
+% grid
+% set(gca, 'Color','k', 'XColor','w', 'YColor','w');set(gcf, 'Color','k')
+% %% plotting
+% figure(11)
+% sigma( ...
+%     ltf.To, 'c', ...
+%     ltf.So, 'r', ...
+%     ltf.Si, 'y-.', ...
+%     Y, 'm--' ...
+%     )
+% legend( 'Ty', 'Sy', 'Su', 'Y', 'Location', 'best')
+% grid on
+% set(gca, 'Color','k', 'XColor','w', 'YColor','w');set(gcf, 'Color','k')
+% 
+% figure(22)
+% sigma( ...
+%     G_c, 'w', ...
+%     G, 'g', ...
+%     ltf.Lo, 'c-.', ...
+%     Y, 'm--' ...
+%     )
+% legend( 'Gc', 'Gp', 'Ly', 'Y', 'Location', 'best')
+% grid on
+% set(gca, 'Color','k', 'XColor','w', 'YColor','w');set(gcf, 'Color','k')
+% 
+% 
+% 
+% end
+% end
+end

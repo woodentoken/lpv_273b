@@ -8,6 +8,7 @@ function ac = fill_model_geometry(ac)
 
 %% conversion factors
 inches2meters = 0.0254;
+massu = ureal('mass', 1, 'percent', 20);
 
 %% weight and balance
 ac.mass = 1; % kg

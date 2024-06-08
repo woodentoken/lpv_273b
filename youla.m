@@ -21,24 +21,21 @@ UL = [0 1;1 -21*s];
 UR = [-0.58 -0.028*s-0.15; 2.5 0.12*s+1.4e-3];
 del = s^2+0.15*s+0.47; % manual effort to change this for each system
 Mpdel = [1 0; 0 (s^2+0.15*s+0.47)];
-Mp = vpa(Mpdel/del, 2);
+MP = Mpdel/del;
 
 Y1 = 0.47;
 Y2 = 0.47/del;
-MP = [Y1 0; 0 Y2];
-MT = vpa(MP*MY, 2);
+MY = [Y1 0; 0 Y2];
+MT = MP*MY;
 
 Ty = inv(UL) * MT * UL;
-Ty = vpa(Ty, 2);
 
-M_T = Mp*M_y;
-T_y = inv(U_l)*M_T*U_l;
-S_y = 1-T_y;
-G_C = U_r*inv(eye(2)-M_T)*M_y*U_l;
+S_y = 1-Ty;
+G_C = UR*inv(eye(2)-MT)*MY*UL;
 
 %%
-% Y = U_r*M_y*U_l
-% G_C = U_r*inv(eye(2)-M_T)*M_y*U_l;
+% Y = U_r*MY*U_l
+% G_C = U_r*inv(eye(2)-M_T)*MY*U_l;
 
 
 

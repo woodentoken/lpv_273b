@@ -4,6 +4,9 @@
 
 %% approximation of full longitudinal dynamics
 % state vector = [forward speed, vertical speed, pitch rate, pitch angle];
+
+u = ureal('x', 1, 'percent', 20);
+%u = 0.3224;
 A4 = [
     [Xu   Xw    Xq   -g];
     [Zu   Zw    ac.u_0   0  ];
@@ -20,6 +23,7 @@ B4 = [
 ]; % 4 x 2
 C4=eye(4); % assume perfect state knowledge
 D4=0*eye(4,2);
+
 
 
 %% approximation of phugoid mode dynamics:
@@ -45,6 +49,9 @@ inputs = {'delta elevator', 'delta thrust'};
 
 % define the "higher" 4x2 system
 sys_mimo_4x2 = ss(A4,B4,C4,D4, 'statename', states_4x2, 'inputname', inputs, 'outputname', outputs_4x2);
+
+opt = robOptions('Display','on','Sensitivity','on');
+[StabilityMargin,wcu] = robstab(sys_mimo_4x2,opt);
 
 % define the "lower" 2x2 system
 sys_mimo_2x2 = ss(A_phugoid,B_phugoid,C_phugoid,D_phugoid, 'statename', states_2x2, 'inputname', inputs, 'outputname', outputs_2x2);
