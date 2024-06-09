@@ -34,7 +34,7 @@ ac.x_cg             = 0.3; % aircraft center of gravity location as a percentage
 ac.x_ac             = 0.25; % aircraft aerodynamic center location as a percentage of chord length
 
 %%%%% CHANGE THIS FOR DIFFERENT TRIM CONDITIONS %%%%
-ac.alpha_trim_deg   = 5;
+ac.alpha_trim_deg   = 0;
 ac.alpha_trim       = ac.alpha_trim_deg*deg2rad; % desired trim AOA (you can change this to get different dynamics)
 alpha_condition = string(ac.alpha_trim_deg);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -53,6 +53,11 @@ ac.alpha_0_tail     = 0*deg2rad;
 ac.eta              = 0.85; % tail efficiency factor
 ac.e                = 0.8; % span efficiency factor
 ac.tau_e            = 0.8; % elevator effectiveness factor
+
+%ac.tau_e = ureal('tau_e', 0.8, 'percent', 20)
+
+%massu = ureal('mass', 1, 'percent', 20);
+%ac.geom.S = massu;
 
 %% Calculations from parameters defined above
 % If desired, make modifications to the ac before these scripts below get

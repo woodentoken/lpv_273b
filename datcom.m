@@ -1,0 +1,1 @@
+drawDATCOMaircraft('astdatcom.in')

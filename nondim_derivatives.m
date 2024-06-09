@@ -105,7 +105,11 @@ CL_ac = CL_0 + CL_alpha*ac.alpha_trim + CL_del_e*del_e_trim;
 
 % determine the velocity required to produce enought lift to counter weight
 ac.u_0 = sqrt(ac.mass*9.81/(ac.geom.S*CL_ac*0.5*rho));
+
+%%% Uncertainty in trim airspeed
+ac.u_0 = ureal('u_0', ac.u_0, 'percent', 50);
 ac.Q = 0.5 * rho * ac.u_0^2; % dynamic pressure
+%%%
 
 CD_ac = CD_0 + CD_alpha*ac.alpha_trim + CD_del_e*abs(del_e_trim); % assume drag is countered by thrust
 
