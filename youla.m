@@ -3,7 +3,7 @@ load("saved_trim_states/5_alpha_trim.mat")
 sys_as_tf=tf(ac.mimo_system);
 
 s = sym('s');
-tfm = [-0.8747*s-3.0357,8.1051*s-0.6938;0.3095*s+0.0036,0.0707*s+0.3976];
+tfm = [-0.8747*s-3.036,8.105*s-0.6938;0.3095*s+0.003587,0.07073*s+0.3976];
 
 [N,del] = ss2tfm(ac.mimo_system.A, ac.mimo_system.B, ac.mimo_system.C, ac.mimo_system.D,1);
 N2 = vpa(poly2sym(N),2);
@@ -17,14 +17,14 @@ Mp = Mp/del;
 %syms('s');
 s = tf('s');
 
-UL = [0 1;1 -21*s];
-UR = [-0.58 -0.028*s-0.15; 2.5 0.12*s+1.4e-3];
+UL = [0 1;1 -20.93*s];
+UR = [-0.58 -0.028*s-0.1547; 2.52, 0.12*s+1.4e-3];
 del = s^2+0.15*s+0.47; % manual effort to change this for each system
-Mpdel = [1 0; 0 (s^2+0.15*s+0.47)];
+Mpdel = [1 0; 0 (s^2+0.1466*s+0.4687)];
 MP = Mpdel/del;
 
-Y1 = 0.47;
-Y2 = 0.47/del;
+Y1 = 0.4687;
+Y2 = 0.4687/del;
 MY = [Y1 0; 0 Y2];
 MT = MP*MY;
 
@@ -32,7 +32,7 @@ Ty = inv(UL) * MT * UL;
 
 S_y = 1-Ty;
 G_C = UR*inv(eye(2)-MT)*MY*UL;
-
+Ly = sys_as_tf * G_C;
 %%
 % Y = U_r*MY*U_l
 % G_C = U_r*inv(eye(2)-M_T)*MY*U_l;
@@ -46,8 +46,8 @@ G_C = UR*inv(eye(2)-MT)*MY*UL;
 % G_C = [Gc11 Gc12; Gc21 Gc22];
 
 
-Ly = sys_as_tf * G_C;
-T_y = (eye(2) + Ly)^(-1) * Ly; % Complementary sensitivity function
+
+%T_y = (eye(2) + Ly)^(-1) * Ly; % Complementary sensitivity function
 Y = G_C * (eye(2) + Ly)^(-1);
 
-bode(T_y)
+bode(Ty)
