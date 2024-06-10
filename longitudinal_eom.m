@@ -51,17 +51,19 @@ inputs = {'delta elevator', 'delta thrust'};
 sys_mimo_4x2 = ss(A4,B4,C4,D4, 'statename', states_4x2, 'inputname', inputs, 'outputname', outputs_4x2);
 
 opt = robOptions('Display','on','Sensitivity','on');
-[StabilityMargin,wcu] = robstab(sys_mimo_4x2,opt);
+if isuncertain(sys_mimo_4x2)
+    [StabilityMargin,wcu] = robstab(sys_mimo_4x2,opt);
+end
 
 % define the "lower" 2x2 system
-sys_mimo_2x2 = uss(A_phugoid,B_phugoid,C_phugoid,D_phugoid, 'statename', states_2x2, 'inputname', inputs, 'outputname', outputs_2x2);
-%[N_elevator, D] = ss2tfm(A_phugoid, B_phugoid, C_phugoid, D_phugoid, 1)
-%[N_thrust, D] = ss2tfm(A_phugoid, B_phugoid, C_phugoid, D_phugoid, 2)
+sys_mimo_2x2 = ss(A_phugoid,B_phugoid,C_phugoid,D_phugoid, 'statename', states_2x2, 'inputname', inputs, 'outputname', outputs_2x2);
 
-% transfer function matrices
-tf_sys_mimo_2x2 = tf(sys_mimo_2x2);
-% if rank(ctrb(A_phugoid, B_phugoid)) == 2
-%     sprintf('the 2x2 system is fully controllable')
-%     eig_2x2 = eig(A_phugoid);
-%     [U,S,V] = svd(A_phugoid);
-% end
+if isuncertain(sys_mimo_2x2)
+    [StabilityMargin,wcu] = robstab(sys_mimo_2x2,opt);
+else
+    if rank(ctrb(A_phugoid, B_phugoid)) == 2
+        sprintf('the 2x2 system is fully controllable')
+        eig_2x2 = eig(A_phugoid);
+        [U,S,V] = svd(A_phugoid);
+    end
+end

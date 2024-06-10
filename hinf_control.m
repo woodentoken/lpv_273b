@@ -14,7 +14,6 @@ h = legend('$G{\alpha}=0$', '$G\alpha=10$', '$G\alpha=5$', 'location', 'best');
 set(h, 'Interpreter', 'latex');
 title('Open Loop System Singular Values, normalized by trim airspeed')
 grid on
-% set(gca, 'XColor','k', 'YColor','k');set(gcf, 'Color','w')
 
 %% H infinity control design
 saved_path = 'saved_trim_states/';
@@ -35,6 +34,8 @@ sgtitle('Performant H_{\infty} Controller')
 hinfplotting(ltf_performant, {1e-3, 1e4})
 ac.ltf_performant = ltf_performant;
 
+%ac.ltf_performant.bandwidth = neo_classical_bandwidth(ac.ltf_performant.Sy, alpha)
+
 %% robustness 
 robust.wd = [0.1, 1, 500];
 robust.wp = [700, 0.1, 0.9];
@@ -47,6 +48,9 @@ sgtitle('Robust H_{\infty} Controller')
 hinfplotting(ltf_robust, {1e-3, 1e4})
 ac.ltf_robust = ltf_robust;
 
+%ac.ltf_robust.bandwidth = neo_classical_bandwidth(ac.ltf_robust.Sy, alpha)
+
+%% clean up
 % save with computed Hinf controllers
 save('saved_trim_states/' + alpha_condition + '_alpha_trim')
 
