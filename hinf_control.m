@@ -23,14 +23,14 @@ i=1;
 load([saved_path files(i).name])
 
 %% plotting with performance tuned controller
-perf.wd = [0.2, 1, 500];
-perf.wp = [6000, 10, 0.2];
+perf.wd = [0.2, 50, 500];
+perf.wp = [2000, 5, 0.2];
 perf.wu = [20];
 
+figure()
+sgtitle('Performant H_{\infty} Controller')
 [ltf_performant] = hinfloop(ac.mimo_system, perf);
 [ninf_p, fpeak_p] = hinfnorm(ltf_performant.Tzw)
-figure(2)
-sgtitle('Performant H_{\infty} Controller')
 hinfplotting(ltf_performant, {1e-3, 1e4})
 ac.ltf_performant = ltf_performant;
 
@@ -41,7 +41,7 @@ robust.wd = [0.1, 1, 500];
 robust.wp = [700, 0.1, 0.9];
 robust.wu = [1];
 
-figure(3)
+figure()
 sgtitle('Robust H_{\infty} Controller')
 [ltf_robust] = hinfloop(ac.mimo_system, robust);
 [ninf_r, fpeak_r] = hinfnorm(ltf_robust.Tzw)
