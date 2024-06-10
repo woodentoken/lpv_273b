@@ -17,50 +17,16 @@ grid on
 % set(gca, 'XColor','k', 'YColor','k');set(gcf, 'Color','w')
 
 %% H infinity control design
-% this is used to find an adequate crossover frequency combination for the
-% H infinity controller that results in good low frequency tracking
-% performance
-% clearvars;
 saved_path = 'saved_trim_states/';
 files = dir(fullfile(saved_path, "*.mat"));
 i=1;
 [saved_path files(i).name]
 load([saved_path files(i).name])
-% 
-% xover = logspace(-3, 3, 7);
-% w_range =  logspace(-5, 5, 500);
-% figure(100)
-% for i = 1:length(xover)
-%     norm_i = (i-1)/(length(xover)-1);
-%     color = [norm_i 0 1-norm_i];
-%     [ltf] = hinfloop(ac.mimo_system, [0.2, 10*xover(i), 300], [6000, xover(i), 0.2], [20]);
-%     [SV, W] = sigma(ltf.Ty,w_range);
-%     semilogx(W, SV(1,:)./SV(2,:) , 'Color', color, 'DisplayName', ['Crossover: ' num2str(xover(i))])
-%     hold on
-% end
-% legend('Location', 'best');
-% ylim([1 2])
-% grid on
-% hold off
 
 %% plotting with performance tuned controller
 perf.wd = [0.2, 1, 500];
 perf.wp = [6000, 10, 0.2];
 perf.wu = [20];
-
-% p = ureal('p',10,'Percentage',10);
-% A = [0 p;-p 0];
-% B = eye(2);
-% C = [1 p;-p 1];
-% H = ss(A,B,C,[0 0;0 0])
-% W1 = makeweight(.1,20,50);
-% W2 = makeweight(.2,45,50);
-% Delta1 = ultidyn('Delta1',[1 1]);
-% Delta2 = ultidyn('Delta2',[1 1]);
-% 
-% H = ac.mimo_system
-% G = H*blkdiag(1+W1*Delta1,1+W2*Delta2)
-% G = uss(G)
 
 [ltf_performant] = hinfloop(ac.mimo_system, perf);
 [ninf_p, fpeak_p] = hinfnorm(ltf_performant.Tzw)
