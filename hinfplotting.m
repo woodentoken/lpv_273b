@@ -8,9 +8,6 @@ Ty_color = 'g';
 Sy_color = 'r';
 Y_color = 'b';
 
-set(0,'DefaultAxesFontSize',16)
-set(0, 'DefaultAxesFontWeight', 'bold')
-
 %% plotting
 %set(gca, 'Color','k', 'XColor','w', 'YColor','w');set(gcf, 'Color','k')
 opts = sigmaoptions;

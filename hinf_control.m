@@ -1,31 +1,33 @@
 clearvars; close all; clc
 
-saved_path = 'saved_trim_states/';
-files = dir(fullfile('saved_trim_states/', "*.mat"));
-
-% plot the open loop plant singular values for each trim condition
-for i = 1:1
-    load([saved_path files(i).name])
-    sigma(ac.mimo_system/ac.trim.airspeed)
-    hold on
-    %clear ac
-end
-h = legend('$G{\alpha}=0$', '$G\alpha=10$', '$G\alpha=5$', 'location', 'best');
-set(h, 'Interpreter', 'latex');
-title('Open Loop System Singular Values, normalized by trim airspeed')
-grid on
+% files = dir(fullfile('saved_trim_states/', "*.mat"));
+% 
+% % plot the open loop plant singular values for each trim condition
+% for i = 1:1
+%     load([saved_path files(i).name])
+%     sigma(ac.mimo_system/ac.trim.airspeed)
+%     % hold on
+%     %clear ac
+% end
+% h = legend('$G{\alpha}=0$', '$G\alpha=10$', '$G\alpha=5$', 'location', 'best');
+% set(h, 'Interpreter', 'latex');
+% title('Open Loop System Singular Values, normalized by trim airspeed')
+% grid on
 
 %% H infinity control design
 saved_path = 'saved_trim_states/';
 files = dir(fullfile(saved_path, "*.mat"));
-i=1;
-[saved_path files(i).name]
-load([saved_path files(i).name])
+
+load("saved_trim_states/0_alpha_trim.mat")
+alpha_condition = num2str(ac.trim.alpha_deg);
+
+file = [saved_path alpha_condition '_alpha_trim.mat']
+load(file)
 
 %% plotting with performance tuned controller
-perf.wd = [0.2, 50, 500];
-perf.wp = [2000, 5, 0.2];
-perf.wu = [20];
+perf.wd = [0.5, 10, 100];
+perf.wp = [200, 1, 0.5];
+perf.wu = [5];
 
 figure()
 sgtitle('Performant H_{\infty} Controller')
@@ -52,6 +54,20 @@ ac.ltf_robust = ltf_robust;
 
 %% clean up
 % save with computed Hinf controllers
+
+figure()
+subplot(2,1,1)
+sigma(ac.ltf_performant.Ty, 'g', ac.ltf_performant.Sy, 'r', ac.ltf_performant.Y, 'b', ac.ltf_performant.Ly, 'k-.', {1e-3, 1e3})
+title('Performant H\infty Controller Characteristics')
+grid on
+
+subplot(2,1,2)
+sigma(ac.ltf_robust.Ty, 'g', ac.ltf_robust.Sy, 'r', ac.ltf_robust.Y, 'b', ac.ltf_robust.Ly, 'k-.', {1e-3, 1e3})
+legend('Ty', 'Sy', 'Y', 'Open Loop')
+title('Robust H\infty Controller Characteristics')
+grid on
+
+%%
 save('saved_trim_states/' + alpha_condition + '_alpha_trim')
 
 %% performance comparison

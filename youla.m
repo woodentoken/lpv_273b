@@ -14,8 +14,8 @@ Mp = Mp/del;
 
 %%
 %clear vars
-%syms('s');
-s = tf('s');
+syms('s');
+%s = tf('s');
 
 UL = [0 1;1 -21*s];
 UR = [-0.58 -0.028*s-0.15; 2.5 0.12*s+1.4e-3];
@@ -32,6 +32,12 @@ Ty = inv(UL) * MT * UL;
 
 S_y = 1-Ty;
 G_C = UR*inv(eye(2)-MT)*MY*UL;
+
+
+s = tf('s');
+Ty = [0.47/(s^2+0.15*s+0.47) 0; 0 0.47/(s^2+0.15*s+0.47)];
+Sy = eye(2) - Ty;
+
 
 %%
 % Y = U_r*MY*U_l

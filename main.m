@@ -34,7 +34,7 @@ ac.x_cg             = 0.3; % aircraft center of gravity location as a percentage
 ac.x_ac             = 0.25; % aircraft aerodynamic center location as a percentage of chord length
 
 %%%%% CHANGE THIS FOR DIFFERENT TRIM CONDITIONS %%%%
-ac.alpha_trim_deg   = 0;
+ac.alpha_trim_deg   = 10;
 ac.alpha_trim       = ac.alpha_trim_deg*deg2rad; % desired trim AOA (you can change this to get different dynamics)
 alpha_condition = string(ac.alpha_trim_deg);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
